@@ -51,6 +51,7 @@
     "README.md"
   ],
   "dependencies": {
+    "deprecated-react-native-prop-types": "^4.1.0",
     "prop-types": "^15.6.2",
     "react-native-easy-view-transformer": "^1.2.0"
   },
