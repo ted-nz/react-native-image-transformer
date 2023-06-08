@@ -93,7 +93,7 @@ export default class ImageTransformer extends React.Component {
         this._mounted = true;
 
         // TO DO: Find better way to get initial states
-        Dimensions.addEventListener("change", this.onOrientation);
+        this.unsubscribeDimensions = Dimensions.addEventListener("change", this.onOrientation);
         if (!this.state.source) {
             this.getImageSource(this.props.image);
         }
@@ -135,7 +135,10 @@ export default class ImageTransformer extends React.Component {
     }
 
     componentWillUnmount () {
-        Dimensions.removeEventListener("change", this.onOrientation);
+        if (this.unsubscribeDimensions) {
+            this.unsubscribeDimensions.remove();
+            this.unsubscribeDimensions = null;
+        }
         this._mounted = false;
     }
 
